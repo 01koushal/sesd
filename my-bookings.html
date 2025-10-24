@@ -179,6 +179,36 @@
         .badge.bg-success { background-color: var(--secondary-accent) !important; }
         .badge.bg-secondary { background-color: #6c757d !important; }
 
+        /* ======== NEW: Star Rating CSS ======== */
+        .star-rating-input {
+            display: flex;
+            flex-direction: row-reverse; /* This reverses the star order */
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        /* Hide the actual radio buttons */
+        .star-rating-input input[type="radio"] {
+            display: none;
+        }
+        /* Style the labels (stars) */
+        .star-rating-input label {
+            font-size: 2.5rem;
+            color: #e0e0e0; /* Default empty star color */
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0 0.2rem;
+        }
+        /* When a radio is checked, color all preceding stars */
+        .star-rating-input input[type="radio"]:checked ~ label {
+            color: #fdac41;
+        }
+        /* On hover, color all preceding stars */
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label {
+            color: #fdac41;
+        }
+
+
         /* ======== Footer (Same as index.html) ======== */
         .footer {
             background-color: var(--dark-bg); color: #a0a0a0; padding-top: 5rem;
@@ -217,7 +247,7 @@
                         <a class="nav-link active" aria-current="page" href="my-bookings.html">My Bookings</a>
                     </li>
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-playbook-outline" href="#">Log Out</a>
+                        <a class="btn btn-playbook-outline" href="login.html">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -245,7 +275,7 @@
                         <a class="nav-link" href="#">
                             <i class="bi bi-credit-card-fill"></i> Payment Methods
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="login.html">
                             <i class="bi bi-box-arrow-left"></i> Log Out
                         </a>
                     </div>
@@ -296,7 +326,10 @@
                         </div>
                     </div>
                     <div class="booking-card-footer">
-                        <a href="venue-details.html" class="btn btn-playbook-primary btn-sm">Book Again</a>
+                        <button type="button" class="btn btn-playbook-outline btn-sm" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                            <i class="bi bi-star-fill"></i> Leave Review
+                        </button>
+                        <a href="venue-details.html" class="btn btn-playbook-primary btn-sm ms-2">Book Again</a>
                     </div>
                 </div>
                 
@@ -317,13 +350,51 @@
                         </div>
                     </div>
                     <div class="booking-card-footer">
-                        <a href="venue-details.html" class="btn btn-playbook-primary btn-sm">Book Again</a>
+                        <button type="button" class="btn btn-playbook-outline btn-sm" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                            <i class="bi bi-star-fill"></i> Leave Review
+                        </button>
+                        <a href="venue-details.html" class="btn btn-playbook-primary btn-sm ms-2">Book Again</a>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: var(--border-radius-lg);">
+                <form action="my-bookings.html"> <div class="modal-header border-0">
+                        <h1 class="modal-title fs-5" id="reviewModalLabel">Leave a Review</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <h3 class="h4">How was your experience?</h3>
+                        
+                        <p class="text-muted">Please select a rating</p>
+                        
+                        <div class="star-rating-input">
+                            <input type="radio" id="star-5" name="rating" value="5"><label for="star-5" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star-4" name="rating" value="4"><label for="star-4" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star-3" name="rating" value="3"><label for="star-3" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star-2" name="rating" value="2"><label for="star-2" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star-1" name="rating" value="1"><label for="star-1" class="bi bi-star-fill"></label>
+                        </div>
+                        
+                        <div class="form-floating text-start">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="reviewComment" style="height: 120px"></textarea>
+                            <label for="reviewComment">Share your experience...</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-playbook-outline" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-playbook-primary" data-bs-dismiss="modal">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer">
         <div class="container">
