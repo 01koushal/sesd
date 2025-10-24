@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed! - PlayBook</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ======== Global Styles (Same as index.html) ======== */
+        :root {
+            --primary-blue: #0d6efd;
+            --secondary-accent: #28a745; 
+            --dark-bg: #1a1a1a;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+            --card-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            --hover-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            --border-radius-lg: 1rem;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #f0f2f5; 
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* ======== Navbar (Same as index.html) ======== */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: var(--card-shadow);
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-blue) !important;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand .bi { font-size: 2rem; margin-right: 0.5rem; }
+        .navbar-nav .nav-link { font-weight: 500; color: var(--text-dark); transition: color 0.3s ease; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--primary-blue); }
+        .btn-playbook-primary {
+            background-color: var(--primary-blue); border-color: var(--primary-blue); color: #fff;
+            font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 0.5rem; transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-playbook-primary:hover {
+            background-color: #0b5ed7; border-color: #0b5ed7;
+            transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3);
+            color: #fff;
+        }
+        .btn-playbook-outline {
+            border: 2px solid var(--primary-blue); color: var(--primary-blue);
+            font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 0.5rem; transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-playbook-outline:hover {
+            background-color: var(--primary-blue); color: #fff;
+            transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 100, 255, 0.2);
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        /* ======== Confirmation Box ======== */
+        .confirmation-container {
+            max-width: 700px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+        .confirmation-icon {
+            font-size: 6rem;
+            color: var(--secondary-accent);
+            line-height: 1;
+        }
+        .confirmation-card {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--card-shadow);
+            margin-top: -3.5rem; /* Overlap icon */
+            padding-top: 5rem;
+        }
+        .confirmation-card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .confirmation-card p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+        
+        .booking-summary {
+            background-color: #f8f9fa;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .booking-summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .summary-item .label {
+            color: #6c757d;
+        }
+        .summary-item .value {
+            font-weight: 600;
+        }
+        
+        .confirmation-actions {
+            margin-top: 2rem;
+        }
+
+        /* ======== Footer (Same as index.html) ======== */
+        .footer {
+            background-color: var(--dark-bg); color: #a0a0a0; padding-top: 5rem;
+            padding-bottom: 2rem; margin-top: 5rem;
+            border-top-left-radius: var(--border-radius-lg);
+            border-top-right-radius: var(--border-radius-lg);
+        }
+        .footer h5 { color: #fff; font-weight: 600; margin-bottom: 1.5rem; }
+        .footer .nav-link { color: #a0a0a0; padding: 0.4rem 0; transition: color 0.3s ease; }
+        .footer .nav-link:hover { color: var(--primary-blue); }
+        .footer .social-icons .nav-link { font-size: 1.8rem; padding: 0 0.8rem; }
+        .footer .social-icons .nav-link:first-child { padding-left: 0; }
+        .footer p { font-size: 0.95rem; }
+        .footer hr { border-color: #333; margin: 3rem 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-rocket-takeoff-fill"></i> PlayBook
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search-results.html">Browse Venues</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="my-bookings.html">My Bookings</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-playbook-outline" href="#">Log In</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-playbook-primary" href="#">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="confirmation-container">
+            <div class="confirmation-icon">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="confirmation-card">
+                <h1>Booking Confirmed!</h1>
+                <p>Your slot at Elite Badminton Arena is all set. A confirmation email has been sent to <strong>rohan.sharma@example.com</strong>.</p>
+                <p>Booking ID: <strong>PB-1029384</strong></p>
+                
+                <div class="booking-summary">
+                    <h3>Booking Details</h3>
+                    <div class="summary-item">
+                        <span class="label">Venue:</span>
+                        <span class="value">Elite Badminton Arena</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Date:</span>
+                        <span class="value">Sun, 26 Oct 2025</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Time:</span>
+                        <span class="value">11:00 AM - 12:00 PM</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total Paid:</span>
+                        <span class="value">₹560.00</span>
+                    </div>
+                </div>
+                
+                <div class="confirmation-actions">
+                    <a href="my-bookings.html" class="btn btn-playbook-primary btn-lg">View My Bookings</a>
+                    <a href="index.html" class="btn btn-playbook-outline btn-lg ms-2">Book Another</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="navbar-brand text-white">
+                        <i class="bi bi-rocket-takeoff-fill"></i> PlayBook
+                    </h5>
+                    <p>Connecting athletes with the best sports facilities, making every game a possibility.</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5>Company</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Careers</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Partnerships</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5>Support</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 text-lg-end">
+                    <h5>Connect With Us</h5>
+                    <ul class="nav social-icons justify-content-lg-end">
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-facebook"></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-instagram"></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-twitter-x"></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center text-secondary">&copy; 2025 PlayBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
